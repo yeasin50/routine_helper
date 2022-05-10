@@ -1,6 +1,6 @@
 # routine_helper
 
-A new Flutter project.
+A new Flutter project to get my routine; User based only
 
 ## Getting Started
 
