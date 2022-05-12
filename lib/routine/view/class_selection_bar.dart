@@ -6,7 +6,7 @@ import '../widgets/widgets.dart';
 class ClassSelectionView extends StatelessWidget {
   const ClassSelectionView({Key? key}) : super(key: key);
 
-  //select
+  //select  directily using section name with Course code
   void _showSectionSelectionDialog(BuildContext context) async {
     await showDialog(
       context: context,
@@ -45,19 +45,24 @@ class ClassSelectionView extends StatelessWidget {
           spacing: 10,
           crossAxisAlignment: WrapCrossAlignment.center,
           children: [
-            //selected Course
-            Chip(
+            //show selected RegCourses
+            const Chip(
               label: Text("CSE443"),
             ),
-            // enrty
-            CouseSelectionTextFiled(
-              selectedCourse: (course) {
-                debugPrint(course.toString());
+            //  select your regCourses
+            ElevatedButton(
+              onPressed: () async {
+                final data = await showSearch(
+                  context: context,
+                  delegate: CourseSearchDelegant(),
+                );
+                debugPrint("got data $data");
               },
-            ),
-            FloatingActionButton(onPressed: () {
-              debugPrint("f");
-            })
+              child: const Icon(Icons.add),
+              style: ElevatedButton.styleFrom(
+                shape: const CircleBorder(),
+              ),
+            )
           ],
         ),
       ),
