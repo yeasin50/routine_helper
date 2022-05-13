@@ -102,11 +102,11 @@ final _webPCC = RegisteredCourse(
 class AppData {
   /// my reg courses;
 // //todo: Switch between section
-  List<RegisteredCourse> courses = [
-    _socialPCA,
-    _webLabPCB,
-    _webPCA,
-    _webPCB,
-    _webPCC,
-  ];
+  static List<RegisteredCourse> get offerCourses => [
+        _socialPCA,
+        _webLabPCB,
+        _webPCA,
+        _webPCB,
+        _webPCC,
+      ];
 }
