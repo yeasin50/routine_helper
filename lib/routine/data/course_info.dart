@@ -33,14 +33,14 @@ final _socialPCA = RegisteredCourse(
 
 ///* PC A web
 final _webPCA = RegisteredCourse(
-  course: const Course.webEngineeringLabNew(),
+  course: const Course.webEngineeringNew(),
   section: PCA(),
   teacher: TeacherInfo.mayenUddinUojumdar,
   classes: const [
     Class(
       dayName: Weekday.Tuesday,
       startTime: TimeOfDay(hour: 11, minute: 30),
-      endTime: TimeOfDay(hour: 11, minute: 30),
+      endTime: TimeOfDay(hour: 14, minute: 30),
       place: "AB04-1401",
     )
   ],
@@ -99,12 +99,14 @@ final _webPCC = RegisteredCourse(
   ],
 );
 
-/// my reg courses;
+class AppData {
+  /// my reg courses;
 // //todo: Switch between section
-List<RegisteredCourse> courses = [
-  _socialPCA,
-  _webLabPCB,
-  _webPCA,
-  _webPCB,
-  _webPCC,
-];
+  static List<RegisteredCourse> get offerCourses => [
+        _socialPCA,
+        _webLabPCB,
+        _webPCA,
+        _webPCB,
+        _webPCC,
+      ];
+}
