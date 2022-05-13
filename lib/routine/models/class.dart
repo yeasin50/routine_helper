@@ -27,11 +27,18 @@ class Class extends Equatable {
   });
 
   /// class time 11:30-01:00
-  const Class.t11_30To1({
+  const Class.t11_30({
     required this.dayName,
     required this.place,
   })  : startTime = const TimeOfDay(hour: 11, minute: 30),
         endTime = const TimeOfDay(hour: 13, minute: 00);
+
+  /// class time 10:00-11:30
+  const Class.t10({
+    required this.dayName,
+    required this.place,
+  })  : startTime = const TimeOfDay(hour: 10, minute: 00),
+        endTime = const TimeOfDay(hour: 11, minute: 30);
 
   Class copyWith({
     Weekday? dayName,
