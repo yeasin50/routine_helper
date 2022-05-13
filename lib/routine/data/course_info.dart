@@ -4,6 +4,8 @@ import '../models/models.dart';
 
 import 'data.dart';
 
+//todo: dublicate for Old syll
+
 ///T3_PCA Social class
 final _socialPCA = RegisteredCourse(
   course: const Course.social(),
@@ -29,7 +31,7 @@ final _socialPCA = RegisteredCourse(
   ],
 );
 
-/// PC A web
+///* PC A web
 final _webPCA = RegisteredCourse(
   course: const Course.webEngineeringLabNew(),
   section: PCA(),
@@ -44,9 +46,9 @@ final _webPCA = RegisteredCourse(
   ],
 );
 
-///PC-B web lab :Fixed
+///* PC-B web lab :Fixed
 final _webLabPCB = RegisteredCourse(
-  course: const Course.webEngineeringLabOld(),
+  course: const Course.webEngineeringLabNew(),
   section: PCB(),
   teacher: TeacherInfo.mahfujurRahman,
   classes: const [
@@ -65,7 +67,7 @@ final _webLabPCB = RegisteredCourse(
   ],
 );
 
-///PC-B web
+///* PC-B web
 final _webPCB = RegisteredCourse(
   course: const Course.webEngineeringNew(),
   section: PCB(),
@@ -82,7 +84,7 @@ final _webPCB = RegisteredCourse(
   ],
 );
 
-/// web
+///* PC C web
 final _webPCC = RegisteredCourse(
   course: const Course.webEngineeringNew(),
   section: PCC(),
@@ -91,14 +93,8 @@ final _webPCC = RegisteredCourse(
     Class(
       dayName: Weekday.Saturday,
       startTime: TimeOfDay(hour: 13, minute: 0),
-      endTime: TimeOfDay(hour: 14, minute: 30),
-      place: "AB04-217",
-    ),
-    Class(
-      dayName: Weekday.Monday,
-      startTime: TimeOfDay(hour: 14, minute: 30),
-      endTime: TimeOfDay(hour: 16, minute: 0),
-      place: "AB04-217",
+      endTime: TimeOfDay(hour: 16, minute: 00),
+      place: "AB04-318",
     ),
   ],
 );
@@ -108,5 +104,7 @@ final _webPCC = RegisteredCourse(
 List<RegisteredCourse> courses = [
   _socialPCA,
   _webLabPCB,
+  _webPCA,
+  _webPCB,
   _webPCC,
 ];
