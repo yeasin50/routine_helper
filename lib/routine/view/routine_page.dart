@@ -12,9 +12,10 @@ class RoutinePage extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: const [
+          children: [
             CourseSelectionView(),
-            SemesterScheduleView(),
+            SemesterScheduleView(
+                mapData: SemesterSchedule.testCLS().dayWiseClass),
           ],
         ),
       ),
