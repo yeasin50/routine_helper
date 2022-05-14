@@ -20,7 +20,7 @@ class PCB implements Section {
 
 class PCC implements Section {
   @override
-  String get name => "PC-B";
+  String get name => "PC-C";
 }
 
 class PCOldSyll implements Section {
