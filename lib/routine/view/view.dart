@@ -1,3 +1,3 @@
-export 'class_schedule.dart';
-export 'class_selection_bar.dart';
+export 'semester_schedule.dart';
+export 'course_selection_bar.dart';
 export 'routine_page.dart';

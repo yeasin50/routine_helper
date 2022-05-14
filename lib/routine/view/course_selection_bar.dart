@@ -4,14 +4,14 @@ import 'package:routine_helper/routine/models/models.dart';
 import '../../widgets/widgets.dart';
 import '../widgets/widgets.dart';
 
-class ClassSelectionView extends StatefulWidget {
-  const ClassSelectionView({Key? key}) : super(key: key);
+class CourseSelectionView extends StatefulWidget {
+  const CourseSelectionView({Key? key}) : super(key: key);
 
   @override
-  State<ClassSelectionView> createState() => _ClassSelectionViewState();
+  State<CourseSelectionView> createState() => _CourseSelectionViewState();
 }
 
-class _ClassSelectionViewState extends State<ClassSelectionView> {
+class _CourseSelectionViewState extends State<CourseSelectionView> {
   List<RegisteredCourse> _selectedCourse = [];
 
   void _searchCourse() async {
