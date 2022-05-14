@@ -1,32 +1,30 @@
 import 'dart:core';
 
 import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
-import 'package:routine_helper/routine/data/course_info.dart';
 
-import 'models.dart';
+import '../routine.dart';
 
 class SemesterSchedule extends Equatable {
   final String semesterName;
   final String routineVersion;
   final List<RegisteredCourse> regCourses;
 
-  late final Map<Weekday, RegisteredCourse?> _dayWiseRegCourse;
+  late final Map<Weekday, List<RegisteredCourse>?> _dayWiseRegCourse =
+      _dayWiseClass();
 
+  Map<Weekday, List<RegisteredCourse>?> get dayWiseClass => _dayWiseRegCourse;
+
+  ///create Semester class shedule
   SemesterSchedule({
     required this.regCourses,
     required this.routineVersion,
     required this.semesterName,
-  }) {
-    _dayWiseRegCourse = {};
-    _dayWiseClass();
-  }
+  });
+
   SemesterSchedule.testCLS()
       : regCourses = AppData.offerCourses,
         routineVersion = "test",
-        semesterName = "test" {
-    _dayWiseClass();
-  }
+        semesterName = "test";
 
   SemesterSchedule copyWith({
     List<RegisteredCourse>? classes,
@@ -41,22 +39,25 @@ class SemesterSchedule extends Equatable {
   }
 
   ///provide dayWiseRegClasses
-  ///todo:
-  _dayWiseClass() {
+  ///todo: Recheck
+  Map<Weekday, List<RegisteredCourse>> _dayWiseClass() {
     Map<Weekday, List<RegisteredCourse>> _filteredMap = {};
-
     for (final day in Weekday.values) {
       for (final course in regCourses) {
         List<Class>? _dayCourse =
             course.classes.where((element) => element.dayName == day).toList();
 
-        final filterdCls = course.copyWith(
-          classes: _dayCourse,
-        );
+        final filterdCls = course.copyWith(classes: _dayCourse);
 
-        debugPrint(filterdCls.toString());
+        if (_filteredMap.containsKey(day)) {
+          _filteredMap[day]!.add(filterdCls);
+        } else {
+          _filteredMap[day] = [filterdCls];
+        }
       }
     }
+
+    return _filteredMap;
   }
 
   @override
