@@ -12,7 +12,7 @@ class CourseInfoDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final title = "${course.course.courseCode} ${course.section.name}";
+    final title = "${course.courseCode} ${course.section.name}";
 
     return AlertDialog(
       content: Column(
@@ -24,7 +24,7 @@ class CourseInfoDialog extends StatelessWidget {
             style: Theme.of(context).textTheme.titleMedium,
           ),
           Text(
-            course.course.courseTitle,
+            course.courseTitle,
             style: Theme.of(context).textTheme.titleSmall,
           ),
           Text(course.teacher?.name ?? "NA"),

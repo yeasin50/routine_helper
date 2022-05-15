@@ -44,16 +44,16 @@ class SemesterSchedule extends Equatable {
     Map<Weekday, List<RegisteredCourse>> _filteredMap = {};
     for (final day in Weekday.values) {
       for (final course in regCourses) {
-        List<Class>? _dayCourse =
+        List<Class>? _dayClasses =
             course.classes.where((element) => element.dayName == day).toList();
 
-        if (_dayCourse.isEmpty) continue;
-        final filterdCls = course.copyWith(classes: _dayCourse);
+        if (_dayClasses.isEmpty) continue;
+        final filterRegCourse = course.copyWith(classes: _dayClasses);
 
         if (_filteredMap.containsKey(day)) {
-          _filteredMap[day]!.add(filterdCls);
+          _filteredMap[day]!.add(filterRegCourse);
         } else {
-          _filteredMap[day] = [filterdCls];
+          _filteredMap[day] = [filterRegCourse];
         }
       }
     }

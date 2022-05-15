@@ -71,10 +71,10 @@ class CourseSearchDelegant extends SearchDelegate {
     final List<RegisteredCourse> filterResult = courses
         .where(
           (element) =>
-              element.course.courseCode
+              element.courseCode
                   .toLowerCase()
                   .contains(query.toLowerCase()) ||
-              element.course.courseTitle
+              element.courseTitle
                   .toLowerCase()
                   .contains(query.toLowerCase()),
         )
@@ -88,9 +88,9 @@ class CourseSearchDelegant extends SearchDelegate {
           return CheckboxListTile(
             controlAffinity: ListTileControlAffinity.leading,
             title: Text(
-              "${filterResult[index].course.courseCode} ${filterResult[index].section.name}",
+              "${filterResult[index].courseCode} ${filterResult[index].section.name}",
             ),
-            subtitle: Text(filterResult[index].course.courseTitle),
+            subtitle: Text(filterResult[index].courseTitle),
             value: selectedCourse.contains(filterResult[index]),
             secondary: viewCourseInfo(context, filterResult[index]),
             onChanged: (_) {

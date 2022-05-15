@@ -86,7 +86,7 @@ class _CourseSelectionViewState extends State<CourseSelectionView> {
           backgroundColor: Colors.cyanAccent,
           deleteIcon: const Icon(Icons.close, color: Colors.red),
           onDeleted: () => _removeRegisteredCourse(course),
-          label: Text("${course.course.courseCode} ${course.section.name}"),
+          label: Text("${course.courseCode} ${course.section.name}"),
         ),
       )
       .toList();

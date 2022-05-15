@@ -49,7 +49,7 @@ class SemesterScheduleBetaTemplate extends StatelessWidget {
                                   Text(
                                     "${cls.startTime.formatToString}- ${cls.endTime.formatToString}",
                                   ),
-                                  Text(regCourse.course.courseCode),
+                                  Text(regCourse.courseCode),
                                   Text(cls.place),
                                   Text(regCourse.section.name),
                                 ]
