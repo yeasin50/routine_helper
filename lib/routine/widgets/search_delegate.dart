@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../routine.dart';
 
 
+
 /// Delegate for [showSearch] to define the content of the search page.
 /// 
 class CourseSearchDelegant extends SearchDelegate {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../routine.dart';
-import 'view.dart';
 
 class RoutinePage extends StatelessWidget {
   const RoutinePage({Key? key}) : super(key: key);
@@ -13,9 +12,10 @@ class RoutinePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            CourseSelectionView(),
+            const CourseSelectionView(),
             SemesterScheduleView(
-                mapData: SemesterSchedule.testCLS().dayWiseClass),
+              semesterSchedule: SemesterSchedule.testCLS(),
+            ),
           ],
         ),
       ),

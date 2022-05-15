@@ -47,6 +47,7 @@ class SemesterSchedule extends Equatable {
         List<Class>? _dayCourse =
             course.classes.where((element) => element.dayName == day).toList();
 
+        if (_dayCourse.isEmpty) continue;
         final filterdCls = course.copyWith(classes: _dayCourse);
 
         if (_filteredMap.containsKey(day)) {
