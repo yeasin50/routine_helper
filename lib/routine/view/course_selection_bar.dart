@@ -4,8 +4,16 @@ import 'package:routine_helper/routine/models/models.dart';
 import '../../widgets/widgets.dart';
 import '../widgets/widgets.dart';
 
+typedef OnCourseSelectionChange = void Function(
+    List<RegisteredCourse> selectedCourse);
+
 class CourseSelectionView extends StatefulWidget {
-  const CourseSelectionView({Key? key}) : super(key: key);
+  const CourseSelectionView({
+    Key? key,
+    required this.onCourseSelectionChange,
+  }) : super(key: key);
+
+  final OnCourseSelectionChange onCourseSelectionChange;
 
   @override
   State<CourseSelectionView> createState() => _CourseSelectionViewState();
@@ -21,7 +29,8 @@ class _CourseSelectionViewState extends State<CourseSelectionView> {
         intiSelectedCourse: _selectedCourse,
       ),
     );
-    debugPrint("got data $data");
+    // debugPrint("got data $data");
+    widget.onCourseSelectionChange(_selectedCourse);
     setState(() {
       _selectedCourse = data;
     });
@@ -30,6 +39,7 @@ class _CourseSelectionViewState extends State<CourseSelectionView> {
   /// remove selected on chip-cross tap
   void _removeRegisteredCourse(RegisteredCourse course) {
     _selectedCourse.remove(course);
+    widget.onCourseSelectionChange(_selectedCourse);
     setState(() {});
   }
 
