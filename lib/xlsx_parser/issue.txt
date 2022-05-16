@@ -1,0 +1,11 @@
+parser started ***
+cellId CellIndex(5, 1)  value Saturday
+cellId CellIndex(39, 1)  value Sunday
+cellId CellIndex(82, 1)  value Monday
+cellId CellIndex(123, 1)  value Tuesday
+cellId CellIndex(163, 1)  value Wednesday
+cellId CellIndex(200, 14)  value Thursday
+cellId CellIndex(200, 17)  value Thursday
+cellId CellIndex(235, 14)  value Friday
+cellId CellIndex(235, 17)  value Friday
+parser END ***
