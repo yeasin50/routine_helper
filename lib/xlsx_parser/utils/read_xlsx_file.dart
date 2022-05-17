@@ -15,7 +15,7 @@ String dataToString({required Excel excel, required CellIndex cellIndex}) {
       "Cant find";
 }
 
-Future<void> fileReading() async {
+Future<DepartmentRoutine> fileReading() async {
   debugPrint("parser started ***");
   ByteData data = await rootBundle.load(RoutineConfig.rouitineFileLoc);
   var bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
@@ -64,8 +64,10 @@ Future<void> fileReading() async {
   //   }
   // }
 
-  getClasses(excel);
+  routine = routine.copyWith(clsses: getClasses(excel));
   debugPrint("parser END ***");
+
+  return routine;
 }
 
 List<ClassSchedule> getClasses(Excel excel) {
@@ -83,7 +85,7 @@ List<ClassSchedule> getClasses(Excel excel) {
   List<String> timeSlot = [];
 
   ///getting days, we can simply start row from 6th
-  for (int i = 0; i < 9; i++) {
+  for (int i = 0; i < rows.length; i++) {
     final cells = rows[i];
     // single row with multiple cell
     for (int j = 0; j < cells.length; j++) {
@@ -103,33 +105,32 @@ List<ClassSchedule> getClasses(Excel excel) {
 
           //skip next row including previ [timeSlot+ [room,course.....]]
           i = i + 2;
-          continue;
+          break;
         }
 
         /// we will get extract class schedule block [Room, course, teacher]
         /// jump cell[j] by 3index, as formated sheet, classSchedule data follow [0,1,2], [3,4,5],
-        /// at this state, time slot will get data
-        // else if (cells[j + 2] != null) {
-        //finish the row
-        for (int s = 0; s < timeSlot.length; s++) {
-          ///FIXME: index increment needed to be handled
-          ///
-          for (int cn = 0; cn < rows[i].length - 1; cn += 2) {
-            final room = cells[cn];
-            final course = cells[cn + 1];
-            final teacher = cells[cn + 2];
+        else {
+          final room = cells[j];
+          final course = cells[j + 1];
+          final teacher = cells[j + 2];
 
-            if (room != null && course != null && teacher != null) {
-              // generate class only when we get 3 cell data
-              debugPrint(
-                  "D: $currentDay T: ${timeSlot[s]} R: ${room.value} C: ${course.value} TA: ${teacher.value}");
-            }
+          if (teacher != null) {
+            debugPrint(
+                " r:${room!.value} c:${course!.value} t:${teacher.value}");
+
+            classes.add(
+              ClassSchedule(
+                dayName: currentDay ?? "",
+                timeSlot: "",
+                roomNo: room.value.toString().replaceAll("\n", ""),
+                course: course.value.toString().replaceAll("\n", ""),
+                teacher: teacher.value..toString().replaceAll("\n", ""),
+              ),
+            );
           }
-
-          // j = j + 2;
-          continue;
+          j += 2;
         }
-        // }
       }
     }
   }
