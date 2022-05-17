@@ -3,15 +3,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
-enum Weekday {
-  Monday,
-  Tuesday,
-  Wednesday,
-  Thursday,
-  Friday,
-  Saturday,
-  Sunday,
-}
+import '../../../core/core.dart';
 
 class Class extends Equatable {
   final Weekday dayName;

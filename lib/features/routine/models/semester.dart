@@ -2,6 +2,7 @@ import 'dart:core';
 
 import 'package:equatable/equatable.dart';
 
+import '../../../core/core.dart';
 import '../routine.dart';
 
 class SemesterSchedule extends Equatable {

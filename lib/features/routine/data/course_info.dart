@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/core.dart';
 import '../models/models.dart';
 
 import 'data.dart';

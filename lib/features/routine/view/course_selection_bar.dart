@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:routine_helper/routine/models/models.dart';
 
-import '../../widgets/widgets.dart';
-import '../widgets/widgets.dart';
+import '../../../core/core.dart';
+import '../routine.dart';
 
 typedef OnCourseSelectionChange = void Function(
     List<RegisteredCourse> selectedCourse);

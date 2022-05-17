@@ -1,11 +1,11 @@
 import 'package:excel/excel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:routine_helper/routine/routine.dart';
-import 'package:routine_helper/xlsx_parser/models/dept_routine.dart';
-import 'package:routine_helper/xlsx_parser/xlsx_parser.dart';
 
+import '../../../core/core.dart';
 import '../config/config.dart';
+import '../models/dept_routine.dart';
+import '../xlsx_parser.dart';
 
 String dataToString({required Excel excel, required CellIndex cellIndex}) {
   // const table = "Day_Routine_V2";

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../extensions/extensions.dart';
+import '../../../core/core.dart';
 import '../routine.dart';
 
 class CourseSchedule extends StatelessWidget {

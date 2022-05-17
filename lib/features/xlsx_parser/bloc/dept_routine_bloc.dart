@@ -3,8 +3,8 @@ import 'package:equatable/equatable.dart';
 import 'package:excel/excel.dart';
 import 'package:flutter/services.dart';
 
-import '../../routine/routine.dart';
-import '../models/dept_routine.dart';
+import '../../../core/core.dart';
+ 
 import '../xlsx_parser.dart';
 
 part 'dept_routine_event.dart';
