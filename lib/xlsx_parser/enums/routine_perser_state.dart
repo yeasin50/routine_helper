@@ -13,4 +13,7 @@ enum FilePerserState {
 
   ///
   failure,
+
+  ///
+  success
 }

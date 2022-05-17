@@ -110,21 +110,21 @@ List<ClassSchedule> getClasses(Excel excel) {
 
         /// we will get extract class schedule block [Room, course, teacher]
         /// jump cell[j] by 3index, as formated sheet, classSchedule data follow [0,1,2], [3,4,5],
-        else {
+        else if (j + 2 < cells.length && cells[j + 2] != null) {
           final room = cells[j];
           final course = cells[j + 1];
           final teacher = cells[j + 2];
 
           if (teacher != null) {
-            debugPrint(
-                " r:${room!.value} c:${course!.value} t:${teacher.value}");
+            // debugPrint(
+            //     " r:${room!.value} c:${course?.value} t:${teacher.value}");
 
             classes.add(
               ClassSchedule(
                 dayName: currentDay ?? "",
-                timeSlot: "",
-                roomNo: room.value.toString().replaceAll("\n", ""),
-                course: course.value.toString().replaceAll("\n", ""),
+                timeSlot: timeSlot[j / 3 >= timeSlot.length ? 0 : j ~/ 3],
+                roomNo: room!.value.toString().replaceAll("\n", ""),
+                course: (course?.value.toString() ?? "").replaceAll("\n", ""),
                 teacher: teacher.value..toString().replaceAll("\n", ""),
               ),
             );

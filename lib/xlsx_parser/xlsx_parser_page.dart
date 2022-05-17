@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:routine_helper/xlsx_parser/xlsx_parser.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'models/dept_routine.dart';
-import 'utils/read_xlsx_file.dart';
+import 'xlsx_parser.dart';
 
 class XlSXParserPage extends StatelessWidget {
   const XlSXParserPage({Key? key}) : super(key: key);
@@ -10,36 +10,74 @@ class XlSXParserPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Class_Routine_Spring_2022.xlsx"),
-      ),
-      floatingActionButton: FloatingActionButton(onPressed: () async {
-        await fileReading();
-      }),
-      body: FutureBuilder<DepartmentRoutine>(
-        future: fileReading(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return ListView.separated(
-                separatorBuilder: (context, index) => Divider(),
-                itemCount: snapshot.data?.clsses.length ?? 0,
-                itemBuilder: (c, index) {
-                  final cls = snapshot.data!.clsses[index];
+        appBar: AppBar(
+          title: const Text("Class_Routine_Spring_2022.xlsx"),
+        ),
+        body: BlocBuilder<DeptRoutineBloc, DeptRoutineState>(
+          bloc: DeptRoutineBloc()..add(RoutineGenerateEvent()),
+          builder: (context, state) {
+            switch (state.processState) {
+              case FilePerserState.started:
+                return const Text("file parser started");
 
-                  final _text = "${cls.roomNo} ${cls.course} ${cls.teacher} ";
-                  return ListTile(
-                    title: Text(_text),
-                  );
-                });
-          }
+              case FilePerserState.success:
+                final classes = state.routine!.clsses;
+                return ListView.separated(
+                  separatorBuilder: (context, index) => const Divider(),
+                  itemCount: classes.length,
+                  itemBuilder: (c, index) {
+                    debugPrint("total class S ${classes.length}");
+                    final cls = classes[index];
 
-          if (snapshot.hasError) {
-            return Text(snapshot.error.toString());
-          }
+                    final _text = "${cls.roomNo} ${cls.course} ${cls.teacher} ";
+                    return ListTile(
+                      leading: Text(cls.dayName),
+                      title: ColoredBox(
+                          color: Colors.cyanAccent.withOpacity(.3),
+                          child: Text(_text)),
+                      trailing: Text(cls.timeSlot),
+                    );
+                  },
+                );
+              default:
+                return Text("f");
+            }
+          },
+        )
 
-          return const CircularProgressIndicator();
-        },
-      ),
+        // futureBuilder(),
+        );
+  }
+
+  FutureBuilder<DepartmentRoutine> futureBuilder() {
+    return FutureBuilder<DepartmentRoutine>(
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return ListView.separated(
+            separatorBuilder: (context, index) => const Divider(),
+            itemCount: snapshot.data?.clsses.length ?? 0,
+            itemBuilder: (c, index) {
+              debugPrint("total class S ${snapshot.data?.clsses.length}");
+              final cls = snapshot.data!.clsses[index];
+
+              final _text = "${cls.roomNo} ${cls.course} ${cls.teacher} ";
+              return ListTile(
+                leading: Text(cls.dayName),
+                title: ColoredBox(
+                    color: Colors.cyanAccent.withOpacity(.3),
+                    child: Text(_text)),
+                trailing: Text(cls.timeSlot),
+              );
+            },
+          );
+        }
+
+        if (snapshot.hasError) {
+          return Text(snapshot.error.toString());
+        }
+
+        return const CircularProgressIndicator();
+      },
     );
   }
 }
