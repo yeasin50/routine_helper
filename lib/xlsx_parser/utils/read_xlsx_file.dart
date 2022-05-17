@@ -83,25 +83,53 @@ List<ClassSchedule> getClasses(Excel excel) {
   List<String> timeSlot = [];
 
   ///getting days, we can simply start row from 6th
-  for (int i = 0; i < 120; i++) {
-    final row = rows[i];
+  for (int i = 0; i < 9; i++) {
+    final cells = rows[i];
     // single row with multiple cell
-    for (int j = 0; j < row.length; j++) {
-      final cell = row[j];
+    for (int j = 0; j < cells.length; j++) {
+      final cell = cells[j];
       if (cell != null) {
         ///while we get the dayName, we need to store the day name and also check if it is overlapping with previouse one,
         /// next line we will create list<String> time slot
         /// we can skip next row
         ///*  data xlsx issue on
         if (_gotNewDay(cell.value.toString())) {
-          debugPrint("cellId ${cell.cellIndex}  value ${cell.value}");
+          // debugPrint("cellId ${cell.cellIndex}  value ${cell.value}");
           currentDay = cell.value;
 
           ///*init timeSlot increasing/moving to next row
           timeSlot = _generateTimeSlot(row: rows[i + 1]);
-          debugPrint(timeSlot.toString());
+          // debugPrint(timeSlot.toString());
+
+          //skip next row including previ [timeSlot+ [room,course.....]]
+          i = i + 2;
           continue;
         }
+
+        /// we will get extract class schedule block [Room, course, teacher]
+        /// jump cell[j] by 3index, as formated sheet, classSchedule data follow [0,1,2], [3,4,5],
+        /// at this state, time slot will get data
+        // else if (cells[j + 2] != null) {
+        //finish the row
+        for (int s = 0; s < timeSlot.length; s++) {
+          ///FIXME: index increment needed to be handled
+          ///
+          for (int cn = 0; cn < rows[i].length - 1; cn += 2) {
+            final room = cells[cn];
+            final course = cells[cn + 1];
+            final teacher = cells[cn + 2];
+
+            if (room != null && course != null && teacher != null) {
+              // generate class only when we get 3 cell data
+              debugPrint(
+                  "D: $currentDay T: ${timeSlot[s]} R: ${room.value} C: ${course.value} TA: ${teacher.value}");
+            }
+          }
+
+          // j = j + 2;
+          continue;
+        }
+        // }
       }
     }
   }
