@@ -16,9 +16,13 @@ class SemesterScheduleView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: SemesterScheduleBetaTemplate(
-        semesterSchedule: semesterSchedule,
+      child: SemesterScheduleTableTemplate(
+        semesterSchedule:
+            semesterSchedule.copyWith(classes: AppData.offerCourses),
       ),
+      // SemesterScheduleBetaTemplate(
+      //   semesterSchedule: semesterSchedule,
+      // ),
     );
   }
 }
