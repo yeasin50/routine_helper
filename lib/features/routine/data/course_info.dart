@@ -23,7 +23,7 @@ final _socialPCA = RegisteredCourse(
     ),
     Class.t11_30(
       dayName: Weekday.Tuesday,
-      place: "AB04-304",
+      place: "AB04-1402",
     ),
     Class.t10(
       dayName: Weekday.Tuesday,
@@ -43,27 +43,6 @@ final _webPCA = RegisteredCourse(
       startTime: TimeOfDay(hour: 11, minute: 30),
       endTime: TimeOfDay(hour: 14, minute: 30),
       place: "AB04-1401",
-    )
-  ],
-);
-
-///* PC-B web lab :Fixed
-final _webLabPCB = RegisteredCourse(
-  course: const Course.webEngineeringLabNew(),
-  section: PCB(),
-  teacher: TeacherInfo.mahfujurRahman,
-  classes: const [
-    Class(
-      dayName: Weekday.Sunday,
-      startTime: TimeOfDay(hour: 14, minute: 30),
-      endTime: TimeOfDay(hour: 17, minute: 30),
-      place: "AB04-513",
-    ),
-    Class(
-      dayName: Weekday.Tuesday,
-      startTime: TimeOfDay(hour: 14, minute: 30),
-      endTime: TimeOfDay(hour: 17, minute: 30),
-      place: "AB04-513",
     )
   ],
 );
@@ -95,8 +74,69 @@ final _webPCC = RegisteredCourse(
       dayName: Weekday.Saturday,
       startTime: TimeOfDay(hour: 13, minute: 0),
       endTime: TimeOfDay(hour: 16, minute: 00),
-      place: "AB04-318",
+      place: "AB04-318(A)",
     ),
+  ],
+);
+
+final _webLabPCA = RegisteredCourse(
+  course: const Course.webEngineeringLabNew(),
+  section: PCA(),
+  teacher: TeacherInfo.mohammadMonirulIslam,
+  classes: const [
+    Class(
+      dayName: Weekday.Monday,
+      startTime: TimeOfDay(hour: 11, minute: 30),
+      endTime: TimeOfDay(hour: 14, minute: 30),
+      place: "AB04-515",
+    ),
+    Class(
+      dayName: Weekday.Wednesday,
+      startTime: TimeOfDay(hour: 14, minute: 30),
+      endTime: TimeOfDay(hour: 17, minute: 30),
+      place: "AB04-515",
+    )
+  ],
+);
+
+///* PC-B web lab :favor Raju sir
+final _webLabPCB = RegisteredCourse(
+  course: const Course.webEngineeringLabNew(),
+  section: PCB(),
+  teacher: TeacherInfo.mahfujurRahman,
+  classes: const [
+    Class(
+      dayName: Weekday.Sunday,
+      startTime: TimeOfDay(hour: 14, minute: 30),
+      endTime: TimeOfDay(hour: 17, minute: 30),
+      place: "AB04-513",
+    ),
+    Class(
+      dayName: Weekday.Tuesday,
+      startTime: TimeOfDay(hour: 14, minute: 30),
+      endTime: TimeOfDay(hour: 17, minute: 30),
+      place: "AB04-513",
+    )
+  ],
+);
+
+final _webLabPCC = RegisteredCourse(
+  course: const Course.webEngineeringLabNew(),
+  section: PCC(),
+  teacher: TeacherInfo.mayenUddinUojumdar,
+  classes: const [
+    Class(
+      dayName: Weekday.Sunday,
+      startTime: TimeOfDay(hour: 11, minute: 30),
+      endTime: TimeOfDay(hour: 14, minute: 30),
+      place: "AB04-519",
+    ),
+    Class(
+      dayName: Weekday.Thursday,
+      startTime: TimeOfDay(hour: 8, minute: 30),
+      endTime: TimeOfDay(hour: 11, minute: 30),
+      place: "AB04-515",
+    )
   ],
 );
 
@@ -105,9 +145,11 @@ class AppData {
 // //todo: Switch between section
   static List<RegisteredCourse> get offerCourses => [
         _socialPCA,
-        _webLabPCB,
         _webPCA,
         _webPCB,
         _webPCC,
+        _webLabPCA,
+        _webLabPCB,
+        _webLabPCC,
       ];
 }

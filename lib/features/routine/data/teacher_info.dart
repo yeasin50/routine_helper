@@ -2,8 +2,6 @@ import '../models/models.dart';
 
 //dont like asset image
 class TeacherInfo {
-
-  
   //social teacher
   static Teacher get nazninSultana => const Teacher(
         name: "Ms. Naznin Sultana",
@@ -28,6 +26,18 @@ class TeacherInfo {
         localImagePath: "assets/images/nasrinIslamBithi.jpg",
       );
 
+  /// PC A lab mmi
+  static Teacher get mohammadMonirulIslam => const Teacher(
+        name: "Mr. Mohammad Monirul Islam",
+        employeeId: "710000519",
+        email: "monirul@daffodilvarsity.edu.bd",
+        phone: "01811481649",
+        siteURL:
+            "https://faculty.daffodilvarsity.edu.bd/profile/cse/monirul.html",
+        designation: "Lecturer (Senior Scale)  ",
+        department: "Department of Computer Science and Engineering",
+        faculty: "Science and Information Technology",
+      );
 //web PC-C
   static Teacher get mayenUddinUojumdar => const Teacher(
         name: "Mayen Uddin Mojumdar",
@@ -38,7 +48,7 @@ class TeacherInfo {
         localImagePath: "assets/images/Mayen_Uddin_Mojumdar.jpg",
       );
 
-  //web lab
+  //web PC B lab
   static Teacher get mahfujurRahman => const Teacher(
         name: "Mr. Md. Mahfujur Rahman",
         employeeId: "710002119",
