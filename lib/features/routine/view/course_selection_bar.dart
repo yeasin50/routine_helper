@@ -66,7 +66,7 @@ class _CourseSelectionViewState extends State<CourseSelectionView> {
       opacity: .4,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: widget.useSearchDialog ? selectableChoiceChip() : searchDialog(),
+        child: widget.useSearchDialog ? searchDialog() : selectableChoiceChip(),
       ),
     );
   }
