@@ -10,7 +10,14 @@ class CourseSelectionView extends StatefulWidget {
   const CourseSelectionView({
     Key? key,
     required this.onCourseSelectionChange,
+    this.useSearchDialog = false,
   }) : super(key: key);
+
+  /// show select course using search dialog for large number of courses,
+  /// else use selectable choice chip.
+  ///
+  /// default [userSearchDialog] is false for better judgement for old syll
+  final bool useSearchDialog;
 
   final OnCourseSelectionChange onCourseSelectionChange;
 
@@ -59,25 +66,27 @@ class _CourseSelectionViewState extends State<CourseSelectionView> {
       opacity: .4,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Wrap(
-          alignment: WrapAlignment.center,
-          runSpacing: 10,
-          spacing: 10,
-          crossAxisAlignment: WrapCrossAlignment.center,
-          children: AppData.offerCourses
-              .map(
-                (course) => ChoiceChip(
-                  selectedColor: Colors.cyanAccent,
-                  label: Text("${course.courseCode} ${course.section.name}"),
-                  selected: _selectedCourse.contains(course),
-                  onSelected: (v) => _onSelected(v, course),
-                ),
-              )
-              .toList(),
-        ),
-
-        // searchDialog(),
+        child: widget.useSearchDialog ? selectableChoiceChip() : searchDialog(),
       ),
+    );
+  }
+
+  Wrap selectableChoiceChip() {
+    return Wrap(
+      alignment: WrapAlignment.center,
+      runSpacing: 10,
+      spacing: 10,
+      crossAxisAlignment: WrapCrossAlignment.center,
+      children: AppData.offerCourses
+          .map(
+            (course) => ChoiceChip(
+              selectedColor: Colors.cyanAccent,
+              label: Text("${course.courseCode} ${course.section.name}"),
+              selected: _selectedCourse.contains(course),
+              onSelected: (v) => _onSelected(v, course),
+            ),
+          )
+          .toList(),
     );
   }
 
