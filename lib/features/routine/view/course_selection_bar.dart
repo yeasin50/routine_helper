@@ -29,9 +29,13 @@ class _CourseSelectionViewState extends State<CourseSelectionView> {
       ),
     );
     // debugPrint("got data $data");
+    _addCourses(data);
+  }
+
+  void _addCourses(List<RegisteredCourse> courses) {
     widget.onCourseSelectionChange(_selectedCourse);
     setState(() {
-      _selectedCourse = data;
+      _selectedCourse = courses;
     });
   }
 
@@ -40,6 +44,12 @@ class _CourseSelectionViewState extends State<CourseSelectionView> {
     _selectedCourse.remove(course);
     widget.onCourseSelectionChange(_selectedCourse);
     setState(() {});
+  }
+
+  void _onSelected(bool v, RegisteredCourse course) {
+    !_selectedCourse.contains(course)
+        ? _addCourses([..._selectedCourse, course])
+        : _removeRegisteredCourse(course);
   }
 
   @override
@@ -54,37 +64,58 @@ class _CourseSelectionViewState extends State<CourseSelectionView> {
           runSpacing: 10,
           spacing: 10,
           crossAxisAlignment: WrapCrossAlignment.center,
-          children: [
-            //show add button while non is selected
-            if (_selectedCourse.isEmpty)
-              ChoiceChip(
-                selected: true,
-                selectedColor: Colors.deepPurple,
-                avatar: const Material(
-                    color: Colors.blue,
-                    shape: CircleBorder(),
-                    child: Icon(Icons.add, color: Colors.white)),
-                label: const Text(
-                  "Select Course",
-                  style: TextStyle(color: Colors.white),
+          children: AppData.offerCourses
+              .map(
+                (course) => ChoiceChip(
+                  selectedColor: Colors.cyanAccent,
+                  label: Text("${course.courseCode} ${course.section.name}"),
+                  selected: _selectedCourse.contains(course),
+                  onSelected: (v) => _onSelected(v, course),
                 ),
-                onSelected: (v) => _searchCourse(),
               )
-            else ...[
-              //show selected course
-              ..._buildSelectedRegCourseChip(),
-              //  append `_selectedCourse` list
-              ElevatedButton(
-                onPressed: _searchCourse,
-                child: const Icon(Icons.add),
-                style: ElevatedButton.styleFrom(
-                  shape: const CircleBorder(),
-                ),
-              ),
-            ]
-          ],
+              .toList(),
         ),
+
+        // searchDialog(),
       ),
+    );
+  }
+
+  Wrap searchDialog() {
+    return Wrap(
+      alignment: WrapAlignment.center,
+      runSpacing: 10,
+      spacing: 10,
+      crossAxisAlignment: WrapCrossAlignment.center,
+      children: [
+        //show add button while non is selected
+        if (_selectedCourse.isEmpty)
+          ChoiceChip(
+            selected: true,
+            selectedColor: Colors.deepPurple,
+            avatar: const Material(
+                color: Colors.blue,
+                shape: CircleBorder(),
+                child: Icon(Icons.add, color: Colors.white)),
+            label: const Text(
+              "Select Course",
+              style: TextStyle(color: Colors.white),
+            ),
+            onSelected: (v) => _searchCourse(),
+          )
+        else ...[
+          //show selected course
+          ..._buildSelectedRegCourseChip(),
+          //  append `_selectedCourse` list
+          ElevatedButton(
+            onPressed: _searchCourse,
+            child: const Icon(Icons.add),
+            style: ElevatedButton.styleFrom(
+              shape: const CircleBorder(),
+            ),
+          ),
+        ]
+      ],
     );
   }
 
