@@ -92,7 +92,7 @@ class _CourseSelectionViewState extends State<CourseSelectionView> {
   List<Chip> _buildSelectedRegCourseChip() => _selectedCourse
       .map(
         (course) => Chip(
-          backgroundColor: Colors.cyanAccent,
+          backgroundColor: course.color,
           deleteIcon: const Icon(Icons.close, color: Colors.red),
           onDeleted: () => _removeRegisteredCourse(course),
           label: Text("${course.courseCode} ${course.section.name}"),

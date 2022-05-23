@@ -3,6 +3,13 @@ import '../models/models.dart';
 //dont like asset image
 class TeacherInfo {
   //social teacher
+
+  static Teacher get un => const Teacher(
+        name: "NA",
+        designation: "designation",
+        department: "department",
+        faculty: "faculty",
+      );
   static Teacher get nazninSultana => const Teacher(
         name: "Ms. Naznin Sultana",
         employeeId: "710001538",
