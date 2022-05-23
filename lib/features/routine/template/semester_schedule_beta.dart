@@ -41,29 +41,36 @@ class SemesterScheduleBetaTemplate extends StatelessWidget {
                   //clases [time, course code, room, section]
                   ...todayRegCourse.map(
                     (RegisteredCourse regCourse) {
-                      return Column(
-                        children: regCourse.classes
-                            .map(
-                              (Class cls) => Row(
-                                children: [
-                                  Text(
-                                    "${cls.startTime.formatToString}- ${cls.endTime.formatToString}",
-                                  ),
-                                  Text(regCourse.courseCode),
-                                  Text(cls.place),
-                                  Text(regCourse.section.name),
-                                ]
-                                    .map(
-                                      (e) => Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 24),
-                                        child: e,
-                                      ),
-                                    )
-                                    .toList(),
-                              ),
-                            )
-                            .toList(),
+                      return Container(
+                        //color based on course name
+                        color: regCourse.color,
+                        child: Column(
+                          children: regCourse.classes
+                              .map(
+                                (Class cls) => Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Text(
+                                      "${cls.startTime.formatToString}- ${cls.endTime.formatToString}",
+                                    ),
+                                    Text(regCourse.courseCode),
+                                    Text(cls.place),
+                                    Text(regCourse.section.name),
+                                    Text(regCourse.teacher!.name)
+                                  ]
+                                      .map(
+                                        (e) => Expanded(
+                                          // padding:
+                                          //     const EdgeInsets.only(right: 24),
+                                          child: e,
+                                        ),
+                                      )
+                                      .toList(),
+                                ),
+                              )
+                              .toList(),
+                        ),
                       );
                     },
                   ).toList()

@@ -5,9 +5,9 @@ import '../models/models.dart';
 
 import 'data.dart';
 
-//todo: dublicate for Old syll
+//todo: duplicate for Old syll
 
-///T3_PCA Social class
+///T3_PCA Social class v.4
 final _socialPCA = RegisteredCourse(
   course: const Course.social(),
   section: T3_PCA(),
@@ -21,20 +21,74 @@ final _socialPCA = RegisteredCourse(
       dayName: Weekday.Monday,
       place: "AB04-304",
     ),
-    Class.t11_30(
+    Class(
+      startTime: TimeOfDay(hour: 1, minute: 0),
+      endTime: TimeOfDay(hour: 2, minute: 30),
       dayName: Weekday.Tuesday,
-      place: "AB04-1402",
+      place: "online",
     ),
     Class.t10(
-      dayName: Weekday.Tuesday,
+      dayName: Weekday.Wednesday,
       place: "AB04-304",
     ),
   ],
 );
 
-///* PC A web
+final _socialPCB = RegisteredCourse(
+  course: const Course.social(),
+  section: T3_PCB(),
+  teacher: TeacherInfo.nazninSultana,
+  classes: const [
+    Class.t10(
+      dayName: Weekday.Sunday,
+      place: "AB04-304",
+    ),
+    Class.t10(
+      dayName: Weekday.Monday,
+      place: "AB04-304",
+    ),
+    Class.t10(
+      dayName: Weekday.Tuesday,
+      place: "online",
+    ),
+    Class.t11_30(
+      dayName: Weekday.Wednesday,
+      place: "AB04-304",
+    ),
+  ],
+);
+final _socialPCC = RegisteredCourse(
+  course: const Course.social(),
+  section: T3_PCC(),
+  teacher: TeacherInfo.un,
+  classes: const [
+    Class.t11_30(
+      dayName: Weekday.Sunday,
+      place: "AB04-208",
+    ),
+    Class(
+      startTime: TimeOfDay(hour: 02, minute: 30),
+      endTime: TimeOfDay(hour: 04, minute: 0),
+      dayName: Weekday.Sunday,
+      place: "AB04-208",
+    ),
+    Class(
+      startTime: TimeOfDay(hour: 02, minute: 30),
+      endTime: TimeOfDay(hour: 04, minute: 0),
+      dayName: Weekday.Monday,
+      place: "AB04-219",
+    ),
+    Class.t11_30(
+      dayName: Weekday.Wednesday,
+      place: "AB04-220",
+    ),
+  ],
+);
+
+// final _socialPCB =  RegisteredCourse(course: course, section: section, teacher: teacher, classes: classes)
+///* PC old v4
 final _webPCA = RegisteredCourse(
-  course: const Course.webEngineeringNew(),
+  course: const Course.webEngineeringOld(),
   section: PCA(),
   teacher: TeacherInfo.mayenUddinUojumdar,
   classes: const [
@@ -79,8 +133,9 @@ final _webPCC = RegisteredCourse(
   ],
 );
 
+// v.4
 final _webLabPCA = RegisteredCourse(
-  course: const Course.webEngineeringLabNew(),
+  course: const Course.webEngineeringLabOld(),
   section: PCA(),
   teacher: TeacherInfo.mohammadMonirulIslam,
   classes: const [
@@ -92,8 +147,8 @@ final _webLabPCA = RegisteredCourse(
     ),
     Class(
       dayName: Weekday.Wednesday,
-      startTime: TimeOfDay(hour: 14, minute: 30),
-      endTime: TimeOfDay(hour: 17, minute: 30),
+      startTime: TimeOfDay(hour: 11, minute: 30),
+      endTime: TimeOfDay(hour: 14, minute: 30),
       place: "AB04-515",
     )
   ],
@@ -145,11 +200,13 @@ class AppData {
 // //todo: Switch between section
   static List<RegisteredCourse> get offerCourses => [
         _socialPCA,
-        _webPCA,
-        _webPCB,
-        _webPCC,
+        _socialPCB,
+        _socialPCC,
         _webLabPCA,
+        _webPCA,
         _webLabPCB,
         _webLabPCC,
+        _webPCB,
+        _webPCC,
       ];
 }

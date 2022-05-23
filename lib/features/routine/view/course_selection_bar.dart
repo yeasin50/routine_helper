@@ -10,7 +10,14 @@ class CourseSelectionView extends StatefulWidget {
   const CourseSelectionView({
     Key? key,
     required this.onCourseSelectionChange,
+    this.useSearchDialog = false,
   }) : super(key: key);
+
+  /// show select course using search dialog for large number of courses,
+  /// else use selectable choice chip.
+  ///
+  /// default [userSearchDialog] is false for better judgement for old syll
+  final bool useSearchDialog;
 
   final OnCourseSelectionChange onCourseSelectionChange;
 
@@ -29,9 +36,13 @@ class _CourseSelectionViewState extends State<CourseSelectionView> {
       ),
     );
     // debugPrint("got data $data");
+    _addCourses(data);
+  }
+
+  void _addCourses(List<RegisteredCourse> courses) {
     widget.onCourseSelectionChange(_selectedCourse);
     setState(() {
-      _selectedCourse = data;
+      _selectedCourse = courses;
     });
   }
 
@@ -42,6 +53,12 @@ class _CourseSelectionViewState extends State<CourseSelectionView> {
     setState(() {});
   }
 
+  void _onSelected(bool v, RegisteredCourse course) {
+    !_selectedCourse.contains(course)
+        ? _addCourses([..._selectedCourse, course])
+        : _removeRegisteredCourse(course);
+  }
+
   @override
   Widget build(BuildContext context) {
     return GlassMorphism(
@@ -49,42 +66,65 @@ class _CourseSelectionViewState extends State<CourseSelectionView> {
       opacity: .4,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Wrap(
-          alignment: WrapAlignment.center,
-          runSpacing: 10,
-          spacing: 10,
-          crossAxisAlignment: WrapCrossAlignment.center,
-          children: [
-            //show add button while non is selected
-            if (_selectedCourse.isEmpty)
-              ChoiceChip(
-                selected: true,
-                selectedColor: Colors.deepPurple,
-                avatar: const Material(
-                    color: Colors.blue,
-                    shape: CircleBorder(),
-                    child: Icon(Icons.add, color: Colors.white)),
-                label: const Text(
-                  "Select Course",
-                  style: TextStyle(color: Colors.white),
-                ),
-                onSelected: (v) => _searchCourse(),
-              )
-            else ...[
-              //show selected course
-              ..._buildSelectedRegCourseChip(),
-              //  append `_selectedCourse` list
-              ElevatedButton(
-                onPressed: _searchCourse,
-                child: const Icon(Icons.add),
-                style: ElevatedButton.styleFrom(
-                  shape: const CircleBorder(),
-                ),
-              ),
-            ]
-          ],
-        ),
+        child: widget.useSearchDialog ? selectableChoiceChip() : searchDialog(),
       ),
+    );
+  }
+
+  Wrap selectableChoiceChip() {
+    return Wrap(
+      alignment: WrapAlignment.center,
+      runSpacing: 10,
+      spacing: 10,
+      crossAxisAlignment: WrapCrossAlignment.center,
+      children: AppData.offerCourses
+          .map(
+            (course) => ChoiceChip(
+              selectedColor: Colors.cyanAccent,
+              label: Text("${course.courseCode} ${course.section.name}"),
+              selected: _selectedCourse.contains(course),
+              onSelected: (v) => _onSelected(v, course),
+            ),
+          )
+          .toList(),
+    );
+  }
+
+  Wrap searchDialog() {
+    return Wrap(
+      alignment: WrapAlignment.center,
+      runSpacing: 10,
+      spacing: 10,
+      crossAxisAlignment: WrapCrossAlignment.center,
+      children: [
+        //show add button while non is selected
+        if (_selectedCourse.isEmpty)
+          ChoiceChip(
+            selected: true,
+            selectedColor: Colors.deepPurple,
+            avatar: const Material(
+                color: Colors.blue,
+                shape: CircleBorder(),
+                child: Icon(Icons.add, color: Colors.white)),
+            label: const Text(
+              "Select Course",
+              style: TextStyle(color: Colors.white),
+            ),
+            onSelected: (v) => _searchCourse(),
+          )
+        else ...[
+          //show selected course
+          ..._buildSelectedRegCourseChip(),
+          //  append `_selectedCourse` list
+          ElevatedButton(
+            onPressed: _searchCourse,
+            child: const Icon(Icons.add),
+            style: ElevatedButton.styleFrom(
+              shape: const CircleBorder(),
+            ),
+          ),
+        ]
+      ],
     );
   }
 
@@ -92,7 +132,7 @@ class _CourseSelectionViewState extends State<CourseSelectionView> {
   List<Chip> _buildSelectedRegCourseChip() => _selectedCourse
       .map(
         (course) => Chip(
-          backgroundColor: Colors.cyanAccent,
+          backgroundColor: course.color,
           deleteIcon: const Icon(Icons.close, color: Colors.red),
           onDeleted: () => _removeRegisteredCourse(course),
           label: Text("${course.courseCode} ${course.section.name}"),

@@ -13,6 +13,16 @@ class T3_PCA implements Section {
   String get name => "T3_PC-A";
 }
 
+class T3_PCB implements Section {
+  @override
+  String get name => "T3_PC-B";
+}
+
+class T3_PCC implements Section {
+  @override
+  String get name => "T3_PC-C";
+}
+
 class PCB implements Section {
   @override
   String get name => "PC-B";
