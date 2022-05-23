@@ -40,10 +40,10 @@ class _CourseSelectionViewState extends State<CourseSelectionView> {
   }
 
   void _addCourses(List<RegisteredCourse> courses) {
-    widget.onCourseSelectionChange(_selectedCourse);
     setState(() {
       _selectedCourse = courses;
     });
+    widget.onCourseSelectionChange(_selectedCourse);
   }
 
   /// remove selected on chip-cross tap
@@ -80,7 +80,7 @@ class _CourseSelectionViewState extends State<CourseSelectionView> {
       children: AppData.offerCourses
           .map(
             (course) => ChoiceChip(
-              selectedColor: Colors.cyanAccent,
+              selectedColor: course.color,
               label: Text("${course.courseCode} ${course.section.name}"),
               selected: _selectedCourse.contains(course),
               onSelected: (v) => _onSelected(v, course),
