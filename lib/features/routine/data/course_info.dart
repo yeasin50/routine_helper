@@ -87,9 +87,9 @@ final _socialPCC = RegisteredCourse(
 
 // final _socialPCB =  RegisteredCourse(course: course, section: section, teacher: teacher, classes: classes)
 ///* PC old v4
-final _webPCOld = RegisteredCourse(
+final _webPCA = RegisteredCourse(
   course: const Course.webEngineeringOld(),
-  section: PCOldSyll(),
+  section: PCA(),
   teacher: TeacherInfo.mayenUddinUojumdar,
   classes: const [
     Class(
@@ -134,9 +134,9 @@ final _webPCC = RegisteredCourse(
 );
 
 // v.4
-final _webLabPCOld = RegisteredCourse(
+final _webLabPCA = RegisteredCourse(
   course: const Course.webEngineeringLabOld(),
-  section: PCOldSyll(),
+  section: PCA(),
   teacher: TeacherInfo.mohammadMonirulIslam,
   classes: const [
     Class(
@@ -202,8 +202,8 @@ class AppData {
         _socialPCA,
         _socialPCB,
         _socialPCC,
-        _webLabPCOld,
-        _webPCOld,
+        _webLabPCA,
+        _webPCA,
         _webLabPCB,
         _webLabPCC,
         _webPCB,
