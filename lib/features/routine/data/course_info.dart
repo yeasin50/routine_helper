@@ -25,7 +25,7 @@ final _socialPCA = RegisteredCourse(
       startTime: TimeOfDay(hour: 1, minute: 0),
       endTime: TimeOfDay(hour: 2, minute: 30),
       dayName: Weekday.Tuesday,
-      place: "online",
+      place: "online-203",
     ),
     Class.t10(
       dayName: Weekday.Wednesday,
@@ -45,7 +45,7 @@ final _socialPCB = RegisteredCourse(
     ),
     Class.t10(
       dayName: Weekday.Monday,
-      place: "AB04-304",
+      place: "AB04-305",
     ),
     Class.t10(
       dayName: Weekday.Tuesday,
@@ -96,7 +96,7 @@ final _webPCA = RegisteredCourse(
       dayName: Weekday.Tuesday,
       startTime: TimeOfDay(hour: 11, minute: 30),
       endTime: TimeOfDay(hour: 14, minute: 30),
-      place: "AB04-1401",
+      place: "AB04-202",
     )
   ],
 );
