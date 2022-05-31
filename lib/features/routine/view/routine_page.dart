@@ -35,6 +35,18 @@ class _RoutinePageState extends State<RoutinePage>
   }
 
   @override
+  void initState() {
+    super.initState();
+    semesterSchedule = semesterSchedule.copyWith(classes: AppData.myCourse);
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

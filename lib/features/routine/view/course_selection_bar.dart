@@ -60,6 +60,12 @@ class _CourseSelectionViewState extends State<CourseSelectionView> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _selectedCourse = AppData.myCourse;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GlassMorphism(
       blur: 1,
@@ -77,7 +83,7 @@ class _CourseSelectionViewState extends State<CourseSelectionView> {
       runSpacing: 10,
       spacing: 10,
       crossAxisAlignment: WrapCrossAlignment.center,
-      children: AppData.offerCourses
+      children: <RegisteredCourse>{...AppData.offerCourses, ...AppData.myCourse}
           .map(
             (course) => ChoiceChip(
               selectedColor: course.color,

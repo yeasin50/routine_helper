@@ -87,6 +87,30 @@ final _socialPCC = RegisteredCourse(
 
 // final _socialPCB =  RegisteredCourse(course: course, section: section, teacher: teacher, classes: classes)
 ///* PC old v4
+///
+///
+final _webPCOld = RegisteredCourse(
+  course: const Course.webEngineeringOld(),
+  section: PCOldSyll(),
+  teacher: TeacherInfo.mayenUddinUojumdar,
+  classes: const [
+    Class(
+      dayName: Weekday.Monday,
+      startTime: TimeOfDay(hour: 13, minute: 00),
+      endTime: TimeOfDay(hour: 14, minute: 30),
+      place: "AB04-1401",
+    ),
+    Class(
+      dayName: Weekday.Monday,
+      startTime: TimeOfDay(hour: 14, minute: 30),
+      endTime: TimeOfDay(hour: 16, minute: 0),
+      place: "AB04-1402",
+    ),
+  ],
+);
+
+///
+///
 final _webPCA = RegisteredCourse(
   course: const Course.webEngineeringOld(),
   section: PCA(),
@@ -134,6 +158,26 @@ final _webPCC = RegisteredCourse(
 );
 
 // v.4
+final _webLabPCOld = RegisteredCourse(
+  course: const Course.webEngineeringLabOld(),
+  section: PCOldSyll(),
+  teacher: TeacherInfo.mohammadMonirulIslam,
+  classes: const [
+    Class(
+      dayName: Weekday.Sunday,
+      startTime: TimeOfDay(hour: 9, minute: 15),
+      endTime: TimeOfDay(hour: 11, minute: 30),
+      place: "AB04-516",
+    ),
+    Class(
+      dayName: Weekday.Monday,
+      startTime: TimeOfDay(hour: 9, minute: 15),
+      endTime: TimeOfDay(hour: 11, minute: 30),
+      place: "AB04-516",
+    )
+  ],
+);
+
 final _webLabPCA = RegisteredCourse(
   course: const Course.webEngineeringLabOld(),
   section: PCA(),
@@ -208,5 +252,11 @@ class AppData {
         _webLabPCC,
         _webPCB,
         _webPCC,
+      ];
+
+  static List<RegisteredCourse> get myCourse => [
+        _webLabPCOld,
+        _webPCOld,
+        _socialPCC,
       ];
 }
