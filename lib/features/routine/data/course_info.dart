@@ -106,6 +106,12 @@ final _webPCOld = RegisteredCourse(
       endTime: TimeOfDay(hour: 16, minute: 0),
       place: "AB04-1402",
     ),
+    Class(
+      dayName: Weekday.Thursday,
+      startTime: TimeOfDay(hour: 13, minute: 00),
+      endTime: TimeOfDay(hour: 14, minute: 30),
+      place: "AB04-208",
+    ),
   ],
 );
 
@@ -157,7 +163,7 @@ final _webPCC = RegisteredCourse(
   ],
 );
 
-// v.4
+// final V0.1
 final _webLabPCOld = RegisteredCourse(
   course: const Course.webEngineeringLabOld(),
   section: PCOldSyll(),
