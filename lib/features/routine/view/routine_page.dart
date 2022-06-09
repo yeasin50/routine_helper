@@ -82,23 +82,25 @@ class _RoutinePageState extends State<RoutinePage>
           ),
         ],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const SizedBox(height: 12),
-            CourseSelectionView(
-              useSearchDialog: useSearchDialog,
-              onCourseSelectionChange: (selectedCourse) {
-                semesterSchedule =
-                    semesterSchedule.copyWith(classes: selectedCourse);
-                setState(() {});
-              },
-            ),
-            SemesterScheduleView(
-              semesterSchedule: semesterSchedule,
-            ),
-          ],
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(height: 12),
+              CourseSelectionView(
+                useSearchDialog: useSearchDialog,
+                onCourseSelectionChange: (selectedCourse) {
+                  semesterSchedule =
+                      semesterSchedule.copyWith(classes: selectedCourse);
+                  setState(() {});
+                },
+              ),
+              SemesterScheduleView(
+                semesterSchedule: semesterSchedule,
+              ),
+            ],
+          ),
         ),
       ),
     );
